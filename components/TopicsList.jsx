@@ -6,9 +6,12 @@ import RemoveBtn from "./RemoveBtn";
 
 const getTopics = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/topics", {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "https://next-js-crud-kappa.vercel.app/api/topics",
+      {
+        cache: "no-store",
+      }
+    );
     if (!res.ok) {
       throw new Error("Error in fetching data");
     }

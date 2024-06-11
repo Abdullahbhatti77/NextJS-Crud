@@ -6,9 +6,12 @@ export default function RemoveBtn({ id, onRemove }) {
   const handleDelete = async () => {
     const confirmed = confirm("Are you sure you want to delete this topic?");
     if (confirmed) {
-      const res = await fetch(`http://localhost:3000/api/topics?id=${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://next-js-crud-kappa.vercel.app/api/topics?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (res.ok) {
         onRemove(id); // Call the onRemove function passed as a prop
       }

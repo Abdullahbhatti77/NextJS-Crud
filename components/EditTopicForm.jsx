@@ -11,13 +11,16 @@ export default function EditTopicForm({ id, title, description }) {
   const updateTopic = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ newTitle, newDescription }),
-      });
+      const res = await fetch(
+        `https://next-js-crud-kappa.vercel.app/api/topics/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ newTitle, newDescription }),
+        }
+      );
       if (!res.ok) {
         throw new Error("Error in fetching data");
       }
