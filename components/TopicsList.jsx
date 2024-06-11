@@ -1,8 +1,8 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import { HiPencilAlt } from 'react-icons/hi';
-import Link from 'next/link';
-import RemoveBtn from './RemoveBtn';
+"use client";
+import React, { useEffect, useState } from "react";
+import { HiPencilAlt } from "react-icons/hi";
+import Link from "next/link";
+import RemoveBtn from "./RemoveBtn";
 
 const getTopics = async () => {
   try {
@@ -31,6 +31,11 @@ export default function TopicsList() {
     fetchTopics();
   }, []);
 
+  // Handle topic removal
+  const handleRemove = (id) => {
+    setTopics((prevTopics) => prevTopics.filter((topic) => topic._id !== id));
+  };
+
   // Check if topics is not ready yet
   if (!topics || topics.length === 0) {
     return <div>Loading...</div>; // You can show a loading message here
@@ -39,24 +44,26 @@ export default function TopicsList() {
   return (
     <>
       {topics.map((t) => (
-        <div key={t.id} className='p-4 border rounded-lg border-slate-400 my-3 flex justify-between gap-5 items-start shadow-md'>
+        <div
+          key={t._id}
+          className="p-4 border rounded-lg border-slate-400 my-3 flex justify-between gap-5 items-start shadow-md"
+        >
           <div>
-            <h2 className='font-bold text-2xl'>{t.title}</h2>
+            <h2 className="font-bold text-2xl">{t.title}</h2>
             <div>{t.description}</div>
           </div>
 
-          <div className='flex gap-2'>
-            <RemoveBtn id={t._id}/>
+          <div className="flex gap-2">
+            <RemoveBtn id={t._id} onRemove={handleRemove} />
             <Link href={`/editTopic/${t._id}`}>
-              {/* Assuming you want to pass the topic id to the editTopic page */}
-              <HiPencilAlt size={24} className='text-green-500' />
+              <HiPencilAlt size={24} className="text-green-500" />
             </Link>
           </div>
-          
         </div>
-        
       ))}
-      <h2 className='mt-16 text-green-500 flex justify-center'>Designed by M.Abdullah</h2>
+      <h2 className="mt-16 text-green-500 flex justify-center">
+        Designed by M.Abdullah
+      </h2>
     </>
   );
 }
