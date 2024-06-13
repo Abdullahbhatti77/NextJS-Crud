@@ -7,7 +7,7 @@ export default function RemoveBtn({ id, onRemove }) {
     const confirmed = confirm("Are you sure you want to delete this topic?");
     if (confirmed) {
       const res = await fetch(
-        `https://next-js-crud-kappa.vercel.app/api/topics?id=${id}`,
+        `https://my-notes12.vercel.app/api/topics?id=${id}`,
         {
           method: "DELETE",
         }

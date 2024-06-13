@@ -12,7 +12,7 @@ export default function EditTopicForm({ id, title, description }) {
     e.preventDefault();
     try {
       const res = await fetch(
-        `https://next-js-crud-kappa.vercel.app/api/topics/${id}`,
+        `https://my-notes12.vercel.app/api/topics/${id}`,
         {
           method: "PUT",
           headers: {
